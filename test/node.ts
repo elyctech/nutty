@@ -80,6 +80,10 @@ runTest = result.test.bind(result);
 
 //--- Test Executions
 
+import projectServiceTest from "./project/service_test";
+
+projectServiceTest(runTest);
+
 //--- Test Results
 
 resultCount = result.totalResultCount();
