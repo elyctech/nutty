@@ -2,15 +2,16 @@ const browserify      = require("browserify"),
       concatFileNames = require("gulp-concat-filenames"),
       execute         = require("child_process").exec,
       gulp            = require("gulp"),
-      source          = require("vinyl-source-stream");
+      source          = require("vinyl-source-stream"),
+      tsify           = require("tsify");
 
 gulp.task("build_test", function()
 {
   return browserify({
-      // "debug"   : true,
-      "entries": ["test/node.ts"]
+      // "debug"   : true
     })
-    .plugin("tsify")
+    .add("test/node.ts")
+    .plugin(tsify)
     .transform("babelify", {
       "presets" : ["es2015", "stage-0"],
       // "sourceMaps"  : true
