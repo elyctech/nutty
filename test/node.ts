@@ -80,9 +80,9 @@ runTest = result.test.bind(result);
 
 //--- Test Executions
 
-import projectServiceTest from "./project/service_test";
+import nuttyServiceTest from "./nutty_service_test";
 
-projectServiceTest(runTest);
+nuttyServiceTest(runTest);
 
 //--- Test Results
 

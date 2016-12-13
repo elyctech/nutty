@@ -1,8 +1,8 @@
-import Result         from "../../../result";
-import Project        from "../../../../src/lib/project";
-import ProjectService from "../../../../src/lib/project/service";
+import NuttyService from "../../../src/lib/nutty_service";
+import Result       from "../../result";
+import Project      from "../../../src/lib/project";
 
-function acceptsADescription(projectService: ProjectService, result: Result)
+function acceptsADescription(nuttyService: NuttyService, result: Result)
 {
   let pass                : boolean,
       project1            : Project,
@@ -12,10 +12,10 @@ function acceptsADescription(projectService: ProjectService, result: Result)
 
   pass                = true;
 
-  project1            = projectService.createProject("A description");
+  project1            = nuttyService.createProject("A description");
   project1Description = project1.getDescription();
 
-  project2            = projectService.createProject("Another description");
+  project2            = nuttyService.createProject("Another description");
   project2Description = project2.getDescription();
 
   if (project1Description !== "A description")

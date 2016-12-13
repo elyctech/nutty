@@ -1,14 +1,14 @@
-import Result         from "../../../result";
-import Project        from "../../../../src/lib/project";
-import ProjectService from "../../../../src/lib/project/service";
+import NuttyService from "../../../src/lib/nutty_service";
+import Result       from "../../result";
+import Project      from "../../../src/lib/project";
 
-function raisesExceptionForEmptyDescription(projectService: ProjectService, result: Result)
+function raisesExceptionForEmptyDescription(nuttyService: NuttyService, result: Result)
 {
   try
   {
     let project1 : Project;
 
-    project1 = projectService.createProject("");
+    project1 = nuttyService.createProject("");
 
     result.fail("Excepted exception stating 'Description cannot be empty' but got no exception");
   }
