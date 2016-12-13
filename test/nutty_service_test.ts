@@ -24,7 +24,7 @@ export default function(test: Function): void
   //--- createUserStory
   test(
     "The developer can give the User Story a description",
-    testCreateUserStory.acceptsADescription.bind(new StandardNuttyService())
+    testCreateUserStory.acceptsADescription.bind(null, new StandardNuttyService())
   );
 
   test(
@@ -33,7 +33,7 @@ export default function(test: Function): void
   );
 
   test(
-    "A Project object is provided to the developer",
+    "A User Story object is provided to the developer",
     testCreateUserStory.providesAUserStoryObject.bind(null, new StandardNuttyService())
   );
 };
