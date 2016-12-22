@@ -1,11 +1,18 @@
-import NuttyService       from "../nutty_service";
-import Project            from "../project";
-import UserStory          from "../project/user_story";
-import StandardProject    from "./project";
-import StandardUserStory  from "./project/user_story";
+import NuttyService             from "../nutty_service";
+import Project                  from "../project";
+import StandardProject          from "./project";
+import StandardUserStory        from "./project/user_story";
+import StandardUserStoryBuilder from "./project/user_story/builder";
+import UserStory                from "../project/user_story";
+import UserStoryBuilder         from "../project/user_story/builder";
 
 class StandardNuttyService implements NuttyService
 {
+  buildUserStory(): UserStoryBuilder
+  {
+    return new StandardUserStoryBuilder();
+  }
+
   createProject(description: string): Project
   {
     if (description.length === 0)
