@@ -23,6 +23,11 @@ export default function(test: Function): void
     testBuildUserStory.addsAcceptanceCriteria.bind(null, new StandardNuttyService(new StandardAcceptanceCriterionCollectionFactory()))
   );
 
+  test(
+    "A User Story object is provided to the developer",
+    testBuildUserStory.providesAUserStoryObject.bind(null, new StandardNuttyService(new StandardAcceptanceCriterionCollectionFactory()))
+  );
+
   //--- createProject
   test(
     "The developer can give the Project a description",
