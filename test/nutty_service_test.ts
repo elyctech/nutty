@@ -1,6 +1,7 @@
 import StandardAcceptanceCriterionCollectionFactory from "../src/lib/standard/project/user_story/acceptance_criterion/collection/factory";
 import StandardNuttyService                         from "../src/lib/standard/nutty_service";
 import StandardProjectFactory                       from "../src/lib/standard/project/factory";
+import StandardUserStoryFactory                     from "../src/lib/standard/project/user_story/factory";
 
 import * as testBuildUserStory                      from "./nutty_service_test/build_user_story";
 import * as testCreateProject                       from "./nutty_service_test/create_project";
@@ -11,7 +12,8 @@ let nuttyServiceFactory = {
   {
     return new StandardNuttyService(
       new StandardAcceptanceCriterionCollectionFactory(),
-      new StandardProjectFactory()
+      new StandardProjectFactory(),
+      new StandardUserStoryFactory()
     );
   }
 }

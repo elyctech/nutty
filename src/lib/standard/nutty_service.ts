@@ -8,12 +8,15 @@ import StandardUserStory                    from "./project/user_story";
 import StandardUserStoryBuilder             from "./project/user_story/builder";
 import UserStory                            from "../project/user_story";
 import UserStoryBuilder                     from "../project/user_story/builder";
+import UserStoryFactory                     from "../project/user_story/factory";
 
 class StandardNuttyService implements NuttyService
 {
-  constructor(private acceptanceCriterionCollectionFactory  : AcceptanceCriterionCollectionFactory,
-              private projectFactory                        : ProjectFactory)
-  {
+  constructor(
+    private acceptanceCriterionCollectionFactory  : AcceptanceCriterionCollectionFactory,
+    private projectFactory                        : ProjectFactory,
+    private userStoryFactory                      : UserStoryFactory
+  ) {
 
   }
 
@@ -43,8 +46,7 @@ class StandardNuttyService implements NuttyService
 
     acceptanceCriterionCollection = this.acceptanceCriterionCollectionFactory.construct();
 
-    // TODO Factory
-    return new StandardUserStory(acceptanceCriterionCollection, description);
+    return this.userStoryFactory.construct(acceptanceCriterionCollection, description);
   }
 }
 
