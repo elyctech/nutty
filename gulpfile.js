@@ -1,3 +1,5 @@
+"use strict";
+
 const browserify      = require("browserify"),
       concatFileNames = require("gulp-concat-filenames"),
       execute         = require("child_process").exec,
