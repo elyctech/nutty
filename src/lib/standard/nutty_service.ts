@@ -2,10 +2,9 @@ import AcceptanceCriterionCollection        from "../project/user_story/acceptan
 import AcceptanceCriterionCollectionFactory from "../project/user_story/acceptance_criterion/collection/factory";
 import NuttyService                         from "../nutty_service";
 import Project                              from "../project";
+import ProjectBuilder                       from "../project/builder";
+import ProjectBuilderFactory                from "../project/builder/factory";
 import ProjectFactory                       from "../project/factory";
-import StandardProject                      from "./project";
-import StandardUserStory                    from "./project/user_story";
-import StandardUserStoryBuilder             from "./project/user_story/builder";
 import UserStory                            from "../project/user_story";
 import UserStoryBuilder                     from "../project/user_story/builder";
 import UserStoryBuilderFactory              from "../project/user_story/builder/factory";
@@ -15,11 +14,17 @@ class StandardNuttyService implements NuttyService
 {
   constructor(
     private acceptanceCriterionCollectionFactory  : AcceptanceCriterionCollectionFactory,
+    private projectBuilderFactory                 : ProjectBuilderFactory,
     private projectFactory                        : ProjectFactory,
     private userStoryBuilderFactory               : UserStoryBuilderFactory,
     private userStoryFactory                      : UserStoryFactory
   ) {
 
+  }
+
+  buildProject(): ProjectBuilder
+  {
+    return this.projectBuilderFactory.construct(this.acceptanceCriterionCollectionFactory);
   }
 
   buildUserStory(): UserStoryBuilder
