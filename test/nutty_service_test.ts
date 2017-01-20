@@ -1,9 +1,11 @@
 import StandardAcceptanceCriterionCollectionFactory from "../src/lib/standard/project/user_story/acceptance_criterion/collection/factory";
 import StandardNuttyService                         from "../src/lib/standard/nutty_service";
 import StandardProjectFactory                       from "../src/lib/standard/project/factory";
+import StandardProjectBuilderFactory                from "../src/lib/standard/project/builder/factory";
 import StandardUserStoryBuilderFactory              from "../src/lib/standard/project/user_story/builder/factory";
 import StandardUserStoryFactory                     from "../src/lib/standard/project/user_story/factory";
 
+import * as testBuildProject                        from "./nutty_service_test/build_project";
 import * as testBuildUserStory                      from "./nutty_service_test/build_user_story";
 import * as testCreateProject                       from "./nutty_service_test/create_project";
 import * as testCreateUserStory                     from "./nutty_service_test/create_user_story";
@@ -13,15 +15,27 @@ let nuttyServiceFactory = {
   {
     return new StandardNuttyService(
       new StandardAcceptanceCriterionCollectionFactory(),
+      new StandardProjectBuilderFactory(),
       new StandardProjectFactory(),
       new StandardUserStoryBuilderFactory(),
       new StandardUserStoryFactory()
     );
   }
-}
+};
 
 export default function(test: Function): void
 {
+  //--- buildProject
+  test(
+    "The developer can give the Project a description",
+    testBuildProject.setsDescription.bind(null, nuttyServiceFactory.construct())
+  );
+
+  test(
+    "An exception is raised stating a description is required if the developer provides an empty description",
+    testBuildProject.raisesExceptionForEmptyDescription.bind(null, nuttyServiceFactory.construct())
+  );
+
   //--- buildUserStory
   test(
     "The developer can give the User Story a description",
