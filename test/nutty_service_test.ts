@@ -39,8 +39,13 @@ export default function(test: Function): void
   );
 
   test(
-    "The developer can add existing user stories to the project.",
+    "The developer can add existing user stories to the project",
     testBuildProject.addsUserStories.bind(null, nuttyServiceFactory.construct())
+  );
+
+  test(
+    "A Project object is provided to the developer",
+    testBuildProject.providesAProjectObject.bind(null, nuttyServiceFactory.construct())
   );
 
   //--- buildUserStory
