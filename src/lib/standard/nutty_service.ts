@@ -8,6 +8,7 @@ import ProjectFactory                       from "../project/factory";
 import UserStory                            from "../project/user_story";
 import UserStoryBuilder                     from "../project/user_story/builder";
 import UserStoryBuilderFactory              from "../project/user_story/builder/factory";
+import UserStoryCollectionFactory           from "../project/user_story/collection/factory";
 import UserStoryFactory                     from "../project/user_story/factory";
 
 class StandardNuttyService implements NuttyService
@@ -17,6 +18,7 @@ class StandardNuttyService implements NuttyService
     private projectBuilderFactory                 : ProjectBuilderFactory,
     private projectFactory                        : ProjectFactory,
     private userStoryBuilderFactory               : UserStoryBuilderFactory,
+    private userStoryCollectionFactory            : UserStoryCollectionFactory,
     private userStoryFactory                      : UserStoryFactory
   ) {
 
@@ -24,7 +26,11 @@ class StandardNuttyService implements NuttyService
 
   buildProject(): ProjectBuilder
   {
-    return this.projectBuilderFactory.construct(this.acceptanceCriterionCollectionFactory);
+    return this.projectBuilderFactory.construct(
+      this.acceptanceCriterionCollectionFactory,
+      this.userStoryBuilderFactory,
+      this.userStoryCollectionFactory
+    );
   }
 
   buildUserStory(): UserStoryBuilder
@@ -39,7 +45,7 @@ class StandardNuttyService implements NuttyService
       throw new TypeError("Description cannot be empty");
     }
 
-    return this.projectFactory.construct(description);
+    return this.projectFactory.construct(description, this.userStoryCollectionFactory.construct());
   }
 
   createUserStory(description: string): UserStory

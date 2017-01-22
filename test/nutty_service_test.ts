@@ -3,6 +3,7 @@ import StandardNuttyService                         from "../src/lib/standard/nu
 import StandardProjectFactory                       from "../src/lib/standard/project/factory";
 import StandardProjectBuilderFactory                from "../src/lib/standard/project/builder/factory";
 import StandardUserStoryBuilderFactory              from "../src/lib/standard/project/user_story/builder/factory";
+import StandardUserStoryCollectionFactory           from "../src/lib/standard/project/user_story/collection/factory";
 import StandardUserStoryFactory                     from "../src/lib/standard/project/user_story/factory";
 
 import * as testBuildProject                        from "./nutty_service_test/build_project";
@@ -18,6 +19,7 @@ let nuttyServiceFactory = {
       new StandardProjectBuilderFactory(),
       new StandardProjectFactory(),
       new StandardUserStoryBuilderFactory(),
+      new StandardUserStoryCollectionFactory(),
       new StandardUserStoryFactory()
     );
   }
@@ -34,6 +36,11 @@ export default function(test: Function): void
   test(
     "An exception is raised stating a description is required if the developer provides an empty description",
     testBuildProject.raisesExceptionForEmptyDescription.bind(null, nuttyServiceFactory.construct())
+  );
+
+  test(
+    "The developer can add existing user stories to the project.",
+    testBuildProject.addsUserStories.bind(null, nuttyServiceFactory.construct())
   );
 
   //--- buildUserStory
