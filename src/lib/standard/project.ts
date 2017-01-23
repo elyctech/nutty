@@ -11,6 +11,11 @@ class StandardProject implements Project
 
   }
 
+  addUserStory(userStory: UserStory): void
+  {
+    this.userStories.addUserStory(userStory);
+  }
+
   getUserStories(): UserStoryCollection
   {
     return this.userStories;
