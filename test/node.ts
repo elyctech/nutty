@@ -133,9 +133,11 @@ runTest = result.test.bind(result);
 
 import nuttyServiceTest from "./nutty_service_test";
 import projectTest      from "./project_test";
+import userStoryTest    from "./project/user_story_test";
 
 nuttyServiceTest(runTest);
 projectTest(runTest);
+userStoryTest(runTest);
 
 //--- Test Results
 

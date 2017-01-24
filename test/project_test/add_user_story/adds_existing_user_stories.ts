@@ -27,11 +27,13 @@ function addsExistingUserStories(project: Project, result: Result)
   };
 
   userStory1 = {
+    addAcceptanceCriterion: () => {},
     getAcceptanceCriteria: () => fakeAcceptanceCriterionCollection,
     getDescription: () =>  "User Story 1"
   };
 
   userStory2 = {
+    addAcceptanceCriterion: () => {},
     getAcceptanceCriteria: () => fakeAcceptanceCriterionCollection,
     getDescription: () =>  "User Story 2"
   };

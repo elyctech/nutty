@@ -1,8 +1,11 @@
-import AcceptanceCriteronCollection from "./user_story/acceptance_criterion/collection";
+import AcceptanceCriterion           from "./user_story/acceptance_criterion";
+import AcceptanceCriterionCollection from "./user_story/acceptance_criterion/collection";
 
 interface UserStory
 {
-  getAcceptanceCriteria(): AcceptanceCriteronCollection;
+  addAcceptanceCriterion(acceptanceCriterion: AcceptanceCriterion): void;
+
+  getAcceptanceCriteria(): AcceptanceCriterionCollection;
 
   getDescription(): string;
 }
