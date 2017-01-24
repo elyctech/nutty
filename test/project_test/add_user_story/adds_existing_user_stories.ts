@@ -6,14 +6,13 @@ import Project                        from "../../../src/lib/project";
 import UserStory                      from "../../../src/lib/project/user_story";
 import UserStoryCollection            from "../../../src/lib/project/user_story/collection";
 
-function addsUserStories(nuttyService: NuttyService, result: Result)
+function addsExistingUserStories(project: Project, result: Result)
 {
   let fakeAcceptanceCriterionCollection : AcceptanceCriterionCollection,
       userStories                       : UserStoryCollection,
       userStory1                        : UserStory,
       userStory2                        : UserStory,
-      failed                            : boolean,
-      project                           : Project;
+      failed                            : boolean;
 
   fakeAcceptanceCriterionCollection = {
     addAcceptanceCriterion(acceptanceCriterion: AcceptanceCriterion): void
@@ -39,11 +38,8 @@ function addsUserStories(nuttyService: NuttyService, result: Result)
     getDescription: () =>  "User Story 2"
   };
 
-  project = nuttyService.buildProject()
-                        .setDescription("A User Story")
-                        .addUserStory(userStory1)
-                        .addUserStory(userStory2)
-                        .getProject();
+  project.addUserStory(userStory1);
+  project.addUserStory(userStory2);
 
   userStories = project.getUserStories();
 
@@ -67,4 +63,4 @@ function addsUserStories(nuttyService: NuttyService, result: Result)
   }
 }
 
-export default addsUserStories;
+export default addsExistingUserStories;
